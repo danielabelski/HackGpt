@@ -41,6 +41,14 @@ from .api_scanner import (
     APIFinding,
     APISecurityReport,
 )
+from .cspm_scanner import (
+    CSPMScanner,
+    CloudProvider,
+    CSPMSeverity,
+    CSPMResourceCategory,
+    CSPMFinding,
+    CSPMReport,
+)
 
 __all__ = [
     "EnterpriseAuth",
@@ -77,4 +85,10 @@ __all__ = [
     "OWASPAPICategory",
     "APIFinding",
     "APISecurityReport",
+    "CSPMScanner",
+    "CloudProvider",
+    "CSPMSeverity",
+    "CSPMResourceCategory",
+    "CSPMFinding",
+    "CSPMReport",
 ]

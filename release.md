@@ -1,5 +1,5 @@
 <!-- HackPilot document -->
-# 🚀 HackPilot Enterprise Release Notes — Version 2026.10.22.1
+# 🚀 HackPilot Enterprise Release Notes — Version 2026.10.23
 
 > [!IMPORTANT]
 > ### 🪙 Official Solana Contract Address (CA)
@@ -17,13 +17,24 @@
 
 ---
 
-We are proud to announce the major release of **HackPilot Enterprise Version 2026.10.22.1**! This milestone update delivers enterprise-grade **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, **Automated Ansible Remediation Playbooks**, and massive **50x cold start latency optimizations**.
+We are proud to announce the major release of **HackPilot Enterprise Version 2026.10.23**! This milestone update delivers enterprise-grade **Cloud Security Posture Management (CSPM)**, **Kubernetes Security Posture Management (KSPM)**, **Infrastructure-as-Code (IaC) Security Auditing**, **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, and **Automated Ansible & Bash Hardening Playbooks**.
 
 ---
 
-## 🌟 What's New in Version 2026.10.22.1
+## 🌟 What's New in Version 2026.10.23
 
-### 1. 🤖 AI Red Teaming Engine (`ai_engine/llm_red_team.py`)
+### 1. ☁️ Cloud & Kubernetes Security Posture Management (CSPM / KSPM / IaC Audit)
+* **Multi-Cloud Posture Auditing (`security/cspm_scanner.py`)**:
+  * **AWS**: S3 public read/write detection, missing bucket encryption (KMS/SSE-S3), IAM administrative wildcard privileges (`*:*`), and unconstrained Security Group rules (ports 22, 3389, 3306, 5432 exposed to 0.0.0.0/0).
+  * **Azure**: Unencrypted Storage Account blob services, missing HTTPS transport enforcement, public blob container access.
+  * **GCP**: Google Cloud Storage buckets granting public read/write permissions to `allUsers` or `allAuthenticatedUsers`.
+  * **Kubernetes**: Container privilege escalation (`privileged: true`), root user execution, sensitive host filesystem mounts (`/var/run/docker.sock`, `/etc`), hostile namespace sharing (`hostNetwork`, `hostPID`), unconstrained anonymous RBAC ClusterRoleBindings.
+* **Compliance Framework Benchmarking**: CIS AWS Foundations v3.0, CIS Kubernetes v1.8, NIST SP 800-53 Rev 5, MITRE ATT&CK Cloud Matrix.
+* **Automated Remediation Code Generation**: Executable CLI commands (`aws`, `az`, `gcloud`, `kubectl`) and Terraform HCL remediation blocks with direct shell script export (`--export-cloud-fix`).
+* **AI Cloud Blast-Radius Modeling (`ai_engine/advanced_engine.py`)**: Automatic blast-radius classification (`TENANT_TAKEOVER_RISK`, `CLUSTER_TAKEOVER_RISK`, `DATA_EXFILTRATION_RISK`).
+* **Interactive Console & CLI**: Interactive Option 20 and CLI flags `--cspm-scan`, `--k8s-audit`, and `--export-cloud-fix`.
+
+### 2. 🤖 AI Red Teaming Engine (`ai_engine/llm_red_team.py`)
 * **OWASP LLM Top 10 Probing Framework**: Automated security testing across all ten critical LLM vulnerability vectors:
   * **LLM01: Prompt Injection** — System prompt override, jailbreaks, multi-turn indirect injection.
   * **LLM02: Insecure Output Handling** — Tool execution sanitization, cross-context script injection.
@@ -84,45 +95,60 @@ We are proud to announce the major release of **HackPilot Enterprise Version 202
 
 ---
 
-## 🛠️ Quick Start with Version 2026.10.22.1
+## 🛠️ Quick Start with Version 2026.10.23
 
-### 1. Run AI Red Teaming Assessment
+### 1. Run Cloud Security Posture & K8s Assessment (CSPM/KSPM)
+```bash
+# Execute benchmark multi-cloud CSPM & KSPM assessment
+python3 advance_hackpilot.py --cspm-scan
+
+# Audit specific Terraform IaC directory or Kubernetes manifest path
+python3 advance_hackpilot.py --cspm-scan /path/to/terraform/
+
+# Run targeted Kubernetes security posture audit
+python3 advance_hackpilot.py --k8s-audit
+
+# Export automated CLI and IaC hardening remediation script
+python3 advance_hackpilot.py --cspm-scan --export-cloud-fix cloud_hardening.sh
+```
+
+### 2. Run AI Red Teaming Assessment
 ```bash
 python3 advance_hackpilot.py --llm-redteam mock-gpt4o
 ```
 
-### 2. Scan API for OWASP API Top 10 Vulnerabilities
+### 3. Scan API for OWASP API Top 10 Vulnerabilities
 ```bash
 python3 advance_hackpilot.py --api-scan /path/to/openapi.yaml
 ```
 
-### 3. Generate MITRE D3FEND Countermeasure Defense Matrix
+### 4. Generate MITRE D3FEND Countermeasure Defense Matrix
 ```bash
 python3 advance_hackpilot.py --d3fend-matrix
 ```
 
-### 4. Export Detection-as-Code Sigma Rules
+### 5. Export Detection-as-Code Sigma Rules
 ```bash
 python3 advance_hackpilot.py --export-sigma
 ```
 
-### 5. Generate Automated Ansible Remediation Playbook
+### 6. Generate Automated Ansible Remediation Playbook
 ```bash
 python3 advance_hackpilot.py --export-ansible
 ```
 
-### 6. Query CVE Threat Intelligence & EPSS Scores
+### 7. Query CVE Threat Intelligence & EPSS Scores
 ```bash
 python3 advance_hackpilot.py --cve-lookup CVE-2021-44228
 ```
 
-### 7. Launch Interactive Enterprise Console
+### 8. Launch Interactive Enterprise Console
 ```bash
 python3 advance_hackpilot.py
 ```
-*(Options 18 & 19 for AI Red Teaming and API Security Scanning)*
+*(Options 18, 19, and 20 for AI Red Teaming, API Security Scanning, and Cloud Posture / K8s Auditing)*
 
-### 8. Run Complete Test Suite
+### 9. Run Complete Test Suite
 ```bash
 pytest tests/ -v --tb=short
 ```

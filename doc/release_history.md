@@ -17,7 +17,57 @@ This document logs the release updates, bug fixes, and feature integrations for 
 
 ---
 
-## 🚀 Version 2026.10.22.1
+## 🚀 Version 2026.10.23
+
+*Release Date: October 23, 2026*
+
+> [!IMPORTANT]
+> **Official Solana Contract Address (CA):** `5QE6sNaF3CkAYBqZr4r795isvjFe2qAR9t5zbu1Lpump`
+
+We are excited to announce the release of **HackPilot Enterprise Version 2026.10.23**! This milestone release introduces a comprehensive **Cloud Security Posture Management (CSPM)** and **Kubernetes Security Posture Management (KSPM)** engine with automated **Infrastructure-as-Code (IaC) Security Auditing**, AI-powered cloud blast radius threat modeling, automated multi-cloud remediation scripting, and robust installation enhancements for container and PRoot environments.
+
+### 🌟 What's New in Version 2026.10.23
+
+#### 1. ☁️ Cloud & Kubernetes Security Posture Management (`security/cspm_scanner.py`)
+* **Multi-Cloud Posture Auditing**: Comprehensive rule-based and static analysis coverage across major cloud providers and container orchestrators:
+  * **Amazon Web Services (AWS)**: S3 bucket public access (read/write), missing server-side encryption (SSE-S3 / SSE-KMS), IAM administrative wildcard privileges (`*:*`), and Security Groups with unconstrained ingress (0.0.0.0/0) to administrative and database ports (22, 3389, 3306, 5432).
+  * **Microsoft Azure**: Storage Account unencrypted blob services, public network access policies, and missing HTTPS enforcement.
+  * **Google Cloud Platform (GCP)**: Cloud Storage buckets exposing public permissions to `allUsers` or `allAuthenticatedUsers`, uniform bucket-level access misconfigurations.
+  * **Kubernetes (K8s / KSPM)**: Privileged containers (`privileged: true`), sensitive host filesystem volume mounts (`/var/run/docker.sock`, `/etc`), hostile namespace sharing (`hostNetwork`, `hostPID`, `hostIPC`), unconfined root execution (`runAsNonRoot: false`), missing read-only root filesystems, and unconstrained RBAC ClusterRoleBindings to `system:anonymous` or `system:unauthenticated`.
+* **Compliance Framework Benchmarking**: Built-in compliance checks mapped against:
+  * **CIS AWS Foundations Benchmark v3.0**
+  * **CIS Kubernetes Benchmark v1.8**
+  * **NIST SP 800-53 Rev 5** (AC-3, AC-6, SC-8, SC-13, CM-7)
+  * **MITRE ATT&CK Cloud Matrix** (T1078.004, T1530, T1552, T1610, T1611)
+* **Automated Remediation Code Generation**:
+  * Outputs copy-paste executable CLI commands (`aws s3api`, `az storage account update`, `gcloud storage buckets`, `kubectl delete clusterrolebinding`).
+  * Generates Terraform HCL remediation blocks with secure parameters.
+  * Supports direct script export via `--export-cloud-fix <script_path>`.
+
+#### 2. 🧠 AI Cloud Blast Radius & Threat Modeling (`ai_engine/advanced_engine.py`)
+* Integrated `analyze_cloud_posture()` in `AdvancedAIEngine`:
+  * Evaluates multi-cloud misconfigurations using frontier LLMs.
+  * Synthesizes blast-radius severity tags: `TENANT_TAKEOVER_RISK`, `CLUSTER_TAKEOVER_RISK`, `DATA_EXFILTRATION_RISK`, and `LATERAL_MOVEMENT_RISK`.
+  * Generates prioritized executive summaries and automated defensive recommendations.
+
+#### 3. 🖥️ Interactive Console & CLI Enhancements (`advance_hackpilot.py`)
+* Interactive Menu Option 20: `Cloud Security Posture & K8s Audit (CSPM/KSPM)`.
+* New CLI options:
+  * `--cspm-scan [PATH]`: Execute multi-cloud CSPM/IaC scan across Terraform directory, cloud config JSON, or built-in benchmark.
+  * `--k8s-audit [PATH]`: Execute targeted Kubernetes Security Posture Management assessment.
+  * `--export-cloud-fix [FILE]`: Export an automated remediation shell script containing fix commands.
+
+#### 4. 🛠️ Robust PRoot and Linux Installer Enhancements (`install.sh`)
+* Fixed PRoot symlink depth recursion limit on `/usr/bin/cc`.
+* Ensured GNU coreutils priority to resolve dpkg hardlink errors under Termux PRoot-Distro environments.
+* Added noninteractive frontend mode to eliminate blocking setup dialogs.
+* Added fallback resolution for metadata and media inspection packages (`libimage-exiftool-perl`).
+
+#### 5. 🧪 Testing & Verification
+* **126 Unit Tests Passing**: Added 8 comprehensive unit tests in `tests/unit/test_cspm_scanner.py` with 100% pass rate.
+* Verified end-to-end installation and offline compatibility via `test_installation.py`.
+
+---
 
 *Release Date: October 22, 2026*
 

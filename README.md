@@ -55,6 +55,14 @@
 - **OpenAPI & Swagger Support**: Seamless ingestion and analysis of OpenAPI v2, v3, and v3.1 definitions in JSON and YAML
 - **API Risk Scorecard & Remediation**: Detailed vulnerability findings with CVSS scores, remediation code snippets, and DTO whitelist recommendations
 
+### ☁️ Cloud Security Posture Management (CSPM) & Kubernetes Auditor (KSPM)
+- **Multi-Cloud Infrastructure Auditing**: Deep inspection of AWS (S3, IAM, Security Groups, CloudTrail), Azure (Storage Accounts, Key Vaults, NSGs), GCP (Cloud Storage, IAM, Compute), and Kubernetes clusters
+- **CIS Benchmarks Compliance**: Pre-configured compliance checks mapped to CIS AWS Foundations Benchmark v3.0, CIS Kubernetes Benchmark v1.8, and NIST SP 800-53
+- **Kubernetes Pod Security Standards (PSS) & RBAC**: Automated auditing of container privileged mode, sensitive hostPath mounts (`/var/run/docker.sock`), runAsRoot execution, hostNetwork/hostPID namespace sharing, and excessive ClusterRoleBindings
+- **Infrastructure-as-Code (IaC) Scanning**: Static evaluation of Terraform (`.tf`) and Kubernetes manifests (`.yaml`) to eliminate vulnerabilities before production deployment
+- **Automated Remediation Generation**: One-click generation of executable Bash CLI scripts (AWS CLI, Azure CLI, gcloud, kubectl) and Terraform HCL remediation patches
+- **AI Threat Modeling & Blast Radius**: Automatic correlation of cloud misconfigurations into full-tenant takeover attack paths and blast radius predictions
+
 ### 🛡️ Advanced SOC Analysis & SIEM Integration
 - **Advanced SOC Engine**: Multi-format log parser/normalizer, IOC extraction, MITRE ATT&CK technique mapping
 - **Sliding-Window Correlation**: Real-time event grouping, deduplication, and multi-stage attack timeline reconstruction
@@ -456,6 +464,21 @@ python3 advance_hackpilot.py --api-scan
 
 # Audit custom OpenAPI / Swagger spec file (JSON or YAML)
 python3 advance_hackpilot.py --api-scan path/to/openapi.yaml
+```
+
+### 8. Cloud & Kubernetes Security Posture Management (CSPM / KSPM / IaC Audit)
+```bash
+# Execute benchmark multi-cloud CSPM & KSPM assessment (AWS, Azure, GCP, Kubernetes)
+python3 advance_hackpilot.py --cspm-scan
+
+# Audit specific Terraform IaC directory or Kubernetes manifest path
+python3 advance_hackpilot.py --cspm-scan path/to/terraform/
+
+# Execute dedicated Kubernetes Security Posture Management (KSPM) audit
+python3 advance_hackpilot.py --k8s-audit
+
+# Export automated CLI and IaC hardening remediation script
+python3 advance_hackpilot.py --cspm-scan --export-cloud-fix cloud_hardening.sh
 ```
 
 ## 🔐 Enterprise Security

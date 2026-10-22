@@ -11,6 +11,7 @@ from .kubernetes_manager import KubernetesManager
 from .service_registry import ServiceRegistry
 from .microservice_base import MicroserviceBase
 from .load_balancer import LoadBalancer
+from security.cspm_scanner import CSPMScanner, CSPMReport, CSPMFinding
 
 __version__ = "1.0.0"
 
@@ -20,4 +21,7 @@ __all__ = [
     "ServiceRegistry",
     "MicroserviceBase",
     "LoadBalancer",
+    "CSPMScanner",
+    "CSPMReport",
+    "CSPMFinding",
 ]

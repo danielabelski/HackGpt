@@ -1000,3 +1000,62 @@ Format your response as clear, actionable insights for penetration testers.
                 "bash": graph.generate_hardening_script()
             }
         return {"ansible": "", "bash": ""}
+
+    def analyze_cloud_posture(self, cspm_data: Any) -> Dict[str, Any]:
+        """Synthesize AI threat model & blast radius analysis from Cloud Security Posture (CSPM) audit findings."""
+        findings_list = []
+        env_name = "Cloud Environment"
+        compliance_score = 100.0
+
+        if hasattr(cspm_data, "findings"):
+            findings_list = [f.to_dict() if hasattr(f, "to_dict") else f for f in cspm_data.findings]
+            env_name = getattr(cspm_data, "environment_name", env_name)
+            compliance_score = getattr(cspm_data, "compliance_score", compliance_score)
+        elif isinstance(cspm_data, dict):
+            findings_list = cspm_data.get("findings", [])
+            env_name = cspm_data.get("environment_name", env_name)
+            compliance_score = cspm_data.get("compliance_score", compliance_score)
+        elif isinstance(cspm_data, list):
+            findings_list = [f.to_dict() if hasattr(f, "to_dict") else f for f in cspm_data]
+
+        criticals = [f for f in findings_list if f.get("severity") in ("critical", "CRITICAL")]
+        highs = [f for f in findings_list if f.get("severity") in ("high", "HIGH")]
+
+        # Determine composite blast radius
+        blast_radius = "LOW"
+        if len(criticals) >= 2 or (len(criticals) >= 1 and len(highs) >= 2):
+            blast_radius = "TENANT_TAKEOVER_RISK"
+        elif len(criticals) >= 1 or len(highs) >= 2:
+            blast_radius = "ACCOUNT_COMPROMISE_RISK"
+        elif len(highs) >= 1:
+            blast_radius = "CONTAINED_WORKLOAD_RISK"
+
+        # Threat chaining narrative
+        scenarios: List[str] = []
+        if any("S3" in f.get("service", "") or "Storage" in f.get("category", "") for f in criticals):
+            scenarios.append("Public Object Store Exfiltration: Direct unauthenticated data scraping without credentials.")
+        if any("SecurityGroups" in f.get("service", "") or "022" in f.get("finding_id", "") for f in criticals):
+            scenarios.append("Perimeter Breach via Exposed Management Port: SSH brute-forcing or credential stuffing to gain initial access.")
+        if any("PSS" in f.get("finding_id", "") or "Privileged" in f.get("title", "") for f in criticals):
+            scenarios.append("Kubernetes Host Node Compromise: Privileged container escape accessing host root filesystem and containerd socket.")
+        if any("IAM" in f.get("service", "") or "RBAC" in f.get("service", "") for f in criticals + highs):
+            scenarios.append("Lateral Privilege Escalation: Wildcard cloud policies or cluster-admin bindings enabling full control over cloud control plane.")
+
+        if not scenarios:
+            scenarios.append("Isolated misconfigurations with low lateral movement potential.")
+
+        return {
+            "environment_name": env_name,
+            "compliance_score": compliance_score,
+            "evaluated_findings_count": len(findings_list),
+            "critical_risk_count": len(criticals),
+            "high_risk_count": len(highs),
+            "assessed_blast_radius": blast_radius,
+            "synthesized_attack_scenarios": scenarios,
+            "ai_hardening_priority": [
+                "Sever exposed perimeter ingress ports (SSH/RDP/Databases) immediately.",
+                "Enforce S3 Block Public Access and enable KMS key rotation.",
+                "Apply Pod Security Standards (Restricted Profile) blocking privileged containers and hostPath mounts.",
+                "Adopt Least Privilege IAM roles with ABAC/RBAC condition keys."
+            ]
+        }

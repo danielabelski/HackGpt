@@ -92,7 +92,7 @@ try:
         EnterpriseAuth, ComplianceFrameworkMapper, get_soc_analyzer,
         SIEMConnectorManager, SplunkConnector, QRadarConnector,
         ElasticsearchConnector, WebhookConnector, SIEMConnectorType,
-        APISecurityScanner,
+        APISecurityScanner, CSPMScanner,
     )
     from exploitation import AdvancedExploitationEngine, ZeroDayDetector
     from reporting import DynamicReportGenerator, get_realtime_dashboard
@@ -250,6 +250,7 @@ class EnterpriseHackPilot:
         self.siem_manager = None
         self.llm_red_team = None
         self.api_scanner = None
+        self.cspm_scanner = None
         
         try:
             # Database
@@ -374,21 +375,25 @@ class EnterpriseHackPilot:
                     self.attack_chainer = AttackChainingEngine()
                     self.llm_red_team = LLMRedTeamEngine()
                     self.api_scanner = APISecurityScanner()
+                    self.cspm_scanner = CSPMScanner()
                     self.console.print("[green]✓[/green] CVE Threat Intelligence Engine initialized")
                     self.console.print("[green]✓[/green] Automated Attack Graph Chainer initialized")
                     self.console.print("[green]✓[/green] AI Red Teaming & LLM Security Engine initialized")
                     self.console.print("[green]✓[/green] API Security & OpenAPI Scanner initialized")
+                    self.console.print("[green]✓[/green] Cloud Security Posture (CSPM) & K8s Auditor initialized")
                 except Exception as e:
                     self.cve_intel = None
                     self.attack_chainer = None
                     self.llm_red_team = None
                     self.api_scanner = None
-                    self.console.print(f"[yellow]⚠[/yellow] Threat intelligence / Red Team / API Scanner unavailable: {e}")
+                    self.cspm_scanner = None
+                    self.console.print(f"[yellow]⚠[/yellow] Threat intelligence / Red Team / API / CSPM Scanner unavailable: {e}")
             else:
                 self.cve_intel = None
                 self.attack_chainer = None
                 self.llm_red_team = None
                 self.api_scanner = None
+                self.cspm_scanner = None
             
         except Exception as e:
             self.logger.error(f"Error initializing components: {e}")
@@ -504,7 +509,8 @@ class EnterpriseHackPilot:
             ("Real-time Dashboard", "✓ Active" if self.realtime_dashboard else "⚠ Disabled", "WebSocket"),
             ("SOC Analysis", "✓ Active" if self.soc_analyzer else "⚠ Disabled", "ATT&CK+Rules"),
             ("AI Red Teaming", "✓ Active" if self.llm_red_team else "⚠ Disabled", "OWASP LLM v2026"),
-            ("API Scanner", "✓ Active" if self.api_scanner else "⚠ Disabled", "OWASP API Top 10")
+            ("API Scanner", "✓ Active" if self.api_scanner else "⚠ Disabled", "OWASP API Top 10"),
+            ("CSPM Scanner", "✓ Active" if self.cspm_scanner else "⚠ Disabled", "CIS Benchmarks / KSPM")
         ]
         
         for name, status, version in components:
@@ -539,6 +545,7 @@ class EnterpriseHackPilot:
             ("17", "AI & Intel", "Threat Intel & Attack Graph Chaining"),
             ("18", "AI Red Team", "AI Red Teaming & LLM Assessment (OWASP Top 10)"),
             ("19", "API Security", "API Security Assessment & OpenAPI Audit"),
+            ("20", "Cloud Security", "Cloud Security Posture & K8s Audit (CSPM/KSPM)"),
             ("0", "System", "Exit Application")
         ]
         
@@ -2242,6 +2249,104 @@ class EnterpriseHackPilot:
             rec_text = "\n".join([f"• {r}" for r in report.hardening_recommendations])
             self.console.print(Panel(rec_text, title="[bold yellow]API Hardening Recommendations[/bold yellow]"))
 
+    def run_cspm_scan(self, target_input=None, export_fixes=False):
+        """Execute Cloud Security Posture (CSPM) & Kubernetes (KSPM) Audit against CIS Benchmarks."""
+        if not self.cspm_scanner:
+            self.console.print("[red]Cloud Security Posture (CSPM) Scanner is not initialized.[/red]")
+            return
+
+        self.console.print(Panel(
+            "[bold cyan]Cloud Security Posture Management (CSPM) & K8s Security Auditor[/bold cyan]\n"
+            "Frameworks: [bold green]CIS AWS Foundations v3.0 | CIS Kubernetes v1.8 | NIST SP 800-53 | MITRE ATT&CK Cloud[/bold green]\n"
+            "Auditing AWS, Azure, GCP & Kubernetes for storage exposure, IAM wildcards, open security groups, and pod privilege escalation."
+        ))
+
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            console=self.console
+        ) as progress:
+            task = progress.add_task("[cyan]Auditing cloud infrastructure & Kubernetes manifests...", total=100)
+            if target_input and target_input != 'mock':
+                report = self.cspm_scanner.scan_path(target_input)
+            else:
+                report = self.cspm_scanner.scan_mock()
+            progress.update(task, completed=100)
+
+        # Print Scorecard
+        score_color = "bold green" if report.compliance_score >= 80 else "bold yellow" if report.compliance_score >= 60 else "bold red"
+        scorecard = Table(title="☁️ Cloud Security Posture Scorecard", show_header=True)
+        scorecard.add_column("Environment", style="cyan")
+        scorecard.add_column("Resources Scanned", style="white")
+        scorecard.add_column("Findings", style="bold red")
+        scorecard.add_column("Compliance Score", style=score_color)
+        scorecard.add_column("CIS Pass Rate", style=score_color)
+
+        scorecard.add_row(
+            report.environment_name[:36],
+            str(report.total_resources_scanned),
+            f"{report.total_findings} (Crit: {report.critical_count}, High: {report.high_count}, Med: {report.medium_count})",
+            f"{report.compliance_score:.1f}%",
+            f"{report.cis_pass_rate:.1f}%"
+        )
+        self.console.print(scorecard)
+
+        # Print Findings Table
+        if report.findings:
+            find_table = Table(title="⚠️ Detected Cloud & Container Misconfigurations", show_header=True)
+            find_table.add_column("ID", style="cyan", width=16)
+            find_table.add_column("Provider", style="magenta", width=10)
+            find_table.add_column("Severity", style="bold red", width=10)
+            find_table.add_column("Resource", style="bold yellow", width=26)
+            find_table.add_column("Title", style="white", width=30)
+            find_table.add_column("CIS Benchmark", style="green", width=16)
+            find_table.add_column("MITRE Tactic", style="cyan", width=18)
+
+            for f in report.findings[:10]:
+                sev_color = "bold red" if f.severity in ("critical", "high") else "yellow"
+                find_table.add_row(
+                    f.finding_id,
+                    f.provider.value,
+                    f"[{sev_color}]{f.severity.value.upper()}[/{sev_color}]",
+                    f.resource_id[:24],
+                    f.title[:28],
+                    f.cis_benchmark,
+                    f.mitre_tactic
+                )
+            self.console.print(find_table)
+
+        # AI Threat Analysis & Blast Radius (if available)
+        if self.ai_engine and hasattr(self.ai_engine, "analyze_cloud_posture"):
+            ai_threat = self.ai_engine.analyze_cloud_posture(report)
+            blast_color = "bold red" if "TAKEOVER" in ai_threat.get("assessed_blast_radius", "") else "bold yellow"
+            threat_lines = [
+                f"[bold]Assessed Blast Radius:[/bold] [{blast_color}]{ai_threat.get('assessed_blast_radius')}[/{blast_color}]",
+                "[bold]Synthesized Attack Paths:[/bold]"
+            ]
+            for sc in ai_threat.get("synthesized_attack_scenarios", []):
+                threat_lines.append(f"  • {sc}")
+            self.console.print(Panel("\n".join(threat_lines), title="🤖 AI Cloud Threat & Blast Radius Analysis"))
+
+        # Hardening Roadmap
+        if report.hardening_roadmap:
+            road_text = "\n".join([f"• {r}" for r in report.hardening_roadmap])
+            self.console.print(Panel(road_text, title="[bold yellow]Cloud Hardening Roadmap[/bold yellow]"))
+
+        # Export fixes
+        if export_fixes:
+            script_out = report.export_remediation_script(script_format="bash")
+            tf_out = report.export_remediation_script(script_format="terraform")
+            if isinstance(export_fixes, str) and export_fixes.strip():
+                out_sh = Path(export_fixes)
+                out_tf = out_sh.with_suffix(".tf") if out_sh.suffix == ".sh" else Path(f"{export_fixes}.tf")
+            else:
+                out_sh = Path("reports/cloud_remediation.sh")
+                out_tf = Path("reports/cloud_remediation.tf")
+            out_sh.parent.mkdir(exist_ok=True, parents=True)
+            out_sh.write_text(script_out, encoding="utf-8")
+            out_tf.write_text(tf_out, encoding="utf-8")
+            self.console.print(f"[bold green]✓ Exported automated remediation scripts:[/bold green] {out_sh} and {out_tf}")
+
     def run(self):
         """Main application loop"""
         self.show_banner()
@@ -2250,7 +2355,7 @@ class EnterpriseHackPilot:
             try:
                 self.show_main_menu()
                 choice = Prompt.ask("[cyan]Select option[/cyan]", 
-                                  choices=[str(i) for i in range(20)])
+                                  choices=[str(i) for i in range(21)])
                 
                 if choice == "0":
                     self.console.print("[green]Shutting down HackPilot Enterprise...[/green]")
@@ -2294,6 +2399,8 @@ class EnterpriseHackPilot:
                     self.run_llm_red_team()
                 elif choice == "19":
                     self.run_api_security_scan()
+                elif choice == "20":
+                    self.run_cspm_scan()
                     
             except KeyboardInterrupt:
                 self.console.print("\n[yellow]Use option 0 to exit properly[/yellow]")
@@ -3020,6 +3127,9 @@ def main():
     parser.add_argument('--export-sigma', action='store_true', help='Export Detection-as-Code Sigma rules and Splunk SPL queries')
     parser.add_argument('--export-ansible', action='store_true', help='Generate automated Ansible remediation playbooks')
     parser.add_argument('--d3fend-matrix', action='store_true', help='Display MITRE D3FEND defensive countermeasure matrix')
+    parser.add_argument('--cspm-scan', nargs='?', const='mock', help='Run Cloud Security Posture (CSPM/KSPM) audit on Terraform/K8s path or mock benchmark')
+    parser.add_argument('--k8s-audit', nargs='?', const='mock', help='Audit Kubernetes manifest YAML file for Pod Security Standards (PSS) & RBAC')
+    parser.add_argument('--export-cloud-fix', nargs='?', const='reports/cloud_remediation.sh', default=None, help='Export automated Cloud & Terraform remediation scripts')
     
     args = parser.parse_args()
     
@@ -3075,6 +3185,14 @@ def main():
     elif args.d3fend_matrix:
         hackpilot.show_banner()
         hackpilot.show_d3fend_matrix()
+        return
+    elif args.cspm_scan is not None:
+        hackpilot.show_banner()
+        hackpilot.run_cspm_scan(target_input=args.cspm_scan, export_fixes=args.export_cloud_fix)
+        return
+    elif args.k8s_audit is not None:
+        hackpilot.show_banner()
+        hackpilot.run_cspm_scan(target_input=args.k8s_audit, export_fixes=args.export_cloud_fix)
         return
     elif args.api:
         hackpilot.start_api_server()

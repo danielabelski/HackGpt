@@ -83,6 +83,25 @@ if ! command -v apt-get >/dev/null 2>&1; then
     exit 1
 fi
 
+export DEBIAN_FRONTEND=noninteractive
+
+# Ensure basic core utilities and compiler symlinks are healthy (especially in PRoot environments)
+if ! chgrp --version >/dev/null 2>&1 || ! readlink --version >/dev/null 2>&1; then
+    if [ -x "/usr/bin/gnuchgrp" ] && [ -x "/usr/bin/gnureadlink" ]; then
+        warn "Coreutils symlinks appear broken. Restoring GNU coreutils symlinks..."
+        run_root ln -sf gnuchgrp /usr/bin/chgrp 2>/dev/null || true
+        run_root ln -sf gnureadlink /usr/bin/readlink 2>/dev/null || true
+    fi
+fi
+
+if [ -L "/usr/bin/cc" ] && ! /usr/bin/cc --version >/dev/null 2>&1; then
+    if [ -x "/usr/bin/gcc-15" ]; then
+        run_root ln -sf /usr/bin/gcc-15 /usr/bin/cc 2>/dev/null || true
+    elif [ -x "/usr/bin/gcc" ]; then
+        run_root ln -sf /usr/bin/gcc /usr/bin/cc 2>/dev/null || true
+    fi
+fi
+
 echo "[+] Updating system packages..."
 run_root apt-get update
 if [ "$INSTALL_CONTEXT" = "host" ]; then
@@ -143,11 +162,15 @@ run_root apt-get install -y \
 
 # Install additional security tools that are available
 echo "[+] Installing additional security tools..."
+EXIFTOOL_PKG="exiftool"
+if ! apt-cache show exiftool >/dev/null 2>&1 && apt-cache show libimage-exiftool-perl >/dev/null 2>&1; then
+    EXIFTOOL_PKG="libimage-exiftool-perl"
+fi
 run_root apt-get install -y \
     binwalk \
     foremost \
     steghide \
-    exiftool \
+    "$EXIFTOOL_PKG" \
     tcpdump \
     ncat \
     socat \

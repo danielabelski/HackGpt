@@ -3,14 +3,14 @@
 
 > [!IMPORTANT]
 > ### 🪙 Official Solana Contract Address (CA)
-> **CA:** `5QE6sNaF3CkAYBqZr4r795isvjFe2qAR9t5zbu1Lpump`  
+> **CA:** Soon Available  
 > *Official verified Solana token contract address for HackPilot Enterprise development and community ecosystem.*
 
 > [!NOTE]
 > ### 💖 Project Support, Donations & Sponsorship
 > HackPilot Enterprise is an independent open-source cybersecurity and AI penetration testing research platform created by [Yashab Alam](https://github.com/yashab-cyber). To continuously maintain the platform, support multi-provider frontier AI integrations, and sustain security research infrastructure, **we welcome donations, community sponsorships, and token support**.
 >
-> - **Official CA**: `5QE6sNaF3CkAYBqZr4r795isvjFe2qAR9t5zbu1Lpump`
+> - **Official CA**: Soon Available
 > - **GitHub Sponsors**: [Sponsor @yashab-cyber on GitHub Sponsors](https://github.com/sponsors/yashab-cyber)
 > - **Cryptocurrency Inquiries**: [yashabalam707@gmail.com](mailto:yashabalam707@gmail.com)
 > - **Full Guidelines**: Please visit [DONATE.md](DONATE.md).

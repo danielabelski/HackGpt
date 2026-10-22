@@ -24,11 +24,24 @@ This document logs the release updates, bug fixes, and feature integrations for 
 > [!IMPORTANT]
 > **Official Solana Contract Address (CA):** `5QE6sNaF3CkAYBqZr4r795isvjFe2qAR9t5zbu1Lpump`
 
-We are excited to announce the release of **HackPilot Enterprise Version 2026.10.23**! This milestone release introduces a comprehensive **Cloud Security Posture Management (CSPM)** and **Kubernetes Security Posture Management (KSPM)** engine with automated **Infrastructure-as-Code (IaC) Security Auditing**, AI-powered cloud blast radius threat modeling, automated multi-cloud remediation scripting, and robust installation enhancements for container and PRoot environments.
+We are excited to announce the release of **HackPilot Enterprise Version 2026.10.23**! This milestone release introduces the **OrcaRouter Cyber Inference** model provider contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), a comprehensive **Cloud Security Posture Management (CSPM)** and **Kubernetes Security Posture Management (KSPM)** engine with automated **Infrastructure-as-Code (IaC) Security Auditing**, AI-powered cloud blast radius threat modeling, automated multi-cloud remediation scripting, and robust installation enhancements for container and PRoot environments.
 
 ### 🌟 What's New in Version 2026.10.23
 
-#### 1. ☁️ Cloud & Kubernetes Security Posture Management (`security/cspm_scanner.py`)
+#### 1. 🐋 OrcaRouter Cyber Inference Provider (PR #26 by [@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd))
+> [!NOTE]
+> Special credit and heartfelt thanks to community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** for creating and contributing **Pull Request #26 (`feat(ai): add OrcaRouter Cyber Inference as a named model provider`)**!
+
+* **Named Model Provider Integration (`ai_engine/orcarouter.py`, `ai_engine/providers.py`)**:
+  * Added **OrcaRouter Cyber Inference** (`ModelProvider.ORCAROUTER`) with official base endpoint `https://api.orcarouter.ai/v1`.
+  * Specialized security reasoning routing to flagship OrcaCyber models: `orca/orcacyber-ultra-1.0` and `orca/orcacyber-zero-1.5`, with general fallback to `orcarouter/fusion`.
+  * Generation-safe credential management (`credential_store`) that stores runtime API keys server-side with masked previews (`sk-orca-...0000`) without leaking secrets into client responses or debug logs.
+  * Live model discovery via `GET https://api.orcarouter.ai/v1/models?capability=chat` with capability filtering (chat, multimodal, embeddings) and automatic fallback to verified seed models when unauthenticated or degraded.
+* **Interactive Dashboard Integration (`templates/dashboard.html`, `static/css/style.css`)**:
+  * New **AI Providers** management view in the web dashboard allowing operators to configure, update, and clear OrcaRouter API credentials on the fly.
+  * Capability-filtered dynamic model selection dropdown driven by the `/api/ai/models` endpoint.
+
+#### 2. ☁️ Cloud & Kubernetes Security Posture Management (`security/cspm_scanner.py`)
 * **Multi-Cloud Posture Auditing**: Comprehensive rule-based and static analysis coverage across major cloud providers and container orchestrators:
   * **Amazon Web Services (AWS)**: S3 bucket public access (read/write), missing server-side encryption (SSE-S3 / SSE-KMS), IAM administrative wildcard privileges (`*:*`), and Security Groups with unconstrained ingress (0.0.0.0/0) to administrative and database ports (22, 3389, 3306, 5432).
   * **Microsoft Azure**: Storage Account unencrypted blob services, public network access policies, and missing HTTPS enforcement.
@@ -44,27 +57,27 @@ We are excited to announce the release of **HackPilot Enterprise Version 2026.10
   * Generates Terraform HCL remediation blocks with secure parameters.
   * Supports direct script export via `--export-cloud-fix <script_path>`.
 
-#### 2. 🧠 AI Cloud Blast Radius & Threat Modeling (`ai_engine/advanced_engine.py`)
+#### 3. 🧠 AI Cloud Blast Radius & Threat Modeling (`ai_engine/advanced_engine.py`)
 * Integrated `analyze_cloud_posture()` in `AdvancedAIEngine`:
   * Evaluates multi-cloud misconfigurations using frontier LLMs.
   * Synthesizes blast-radius severity tags: `TENANT_TAKEOVER_RISK`, `CLUSTER_TAKEOVER_RISK`, `DATA_EXFILTRATION_RISK`, and `LATERAL_MOVEMENT_RISK`.
   * Generates prioritized executive summaries and automated defensive recommendations.
 
-#### 3. 🖥️ Interactive Console & CLI Enhancements (`advance_hackpilot.py`)
+#### 4. 🖥️ Interactive Console & CLI Enhancements (`advance_hackpilot.py`)
 * Interactive Menu Option 20: `Cloud Security Posture & K8s Audit (CSPM/KSPM)`.
 * New CLI options:
   * `--cspm-scan [PATH]`: Execute multi-cloud CSPM/IaC scan across Terraform directory, cloud config JSON, or built-in benchmark.
   * `--k8s-audit [PATH]`: Execute targeted Kubernetes Security Posture Management assessment.
   * `--export-cloud-fix [FILE]`: Export an automated remediation shell script containing fix commands.
 
-#### 4. 🛠️ Robust PRoot and Linux Installer Enhancements (`install.sh`)
+#### 5. 🛠️ Robust PRoot and Linux Installer Enhancements (`install.sh`)
 * Fixed PRoot symlink depth recursion limit on `/usr/bin/cc`.
 * Ensured GNU coreutils priority to resolve dpkg hardlink errors under Termux PRoot-Distro environments.
 * Added noninteractive frontend mode to eliminate blocking setup dialogs.
 * Added fallback resolution for metadata and media inspection packages (`libimage-exiftool-perl`).
 
-#### 5. 🧪 Testing & Verification
-* **126 Unit Tests Passing**: Added 8 comprehensive unit tests in `tests/unit/test_cspm_scanner.py` with 100% pass rate.
+#### 6. 🧪 Testing & Verification
+* **163 Unit Tests Passing**: Expanded test suite to 163 passing tests (`pytest tests/unit/ -v`), covering OrcaRouter Cyber Inference, Cloud Security Posture Management (CSPM), Kubernetes Security Posture Management (KSPM), API Security Scanner, and AI Red Teaming.
 * Verified end-to-end installation and offline compatibility via `test_installation.py`.
 
 ---

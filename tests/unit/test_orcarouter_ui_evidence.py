@@ -36,6 +36,12 @@ playwright_api = pytest.importorskip(
     "playwright.sync_api", reason="playwright is required for the UI evidence"
 )
 
+if not Path("/usr/bin/chromium").exists():
+    pytest.skip(
+        "chromium browser executable is not installed at /usr/bin/chromium",
+        allow_module_level=True,
+    )
+
 
 def _dashboard_ready() -> bool:
     try:

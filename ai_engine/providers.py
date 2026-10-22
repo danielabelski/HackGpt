@@ -18,7 +18,7 @@ from typing import Any, Dict, List, Optional, Tuple
 try:
     import openai
 
-    _HAS_OPENAI = True
+    _HAS_OPENAI = hasattr(openai, "OpenAI")
 except ImportError:
     openai = None  # type: ignore[assignment]
     _HAS_OPENAI = False

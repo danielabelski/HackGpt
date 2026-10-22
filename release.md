@@ -17,13 +17,26 @@
 
 ---
 
-We are proud to announce the major release of **HackPilot Enterprise Version 2026.10.23**! This milestone update delivers enterprise-grade **Cloud Security Posture Management (CSPM)**, **Kubernetes Security Posture Management (KSPM)**, **Infrastructure-as-Code (IaC) Security Auditing**, **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, and **Automated Ansible & Bash Hardening Playbooks**.
+We are proud to announce the major release of **HackPilot Enterprise Version 2026.10.23**! This milestone update delivers **OrcaRouter Cyber Inference** integration contributed by community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** (PR #26), enterprise-grade **Cloud Security Posture Management (CSPM)**, **Kubernetes Security Posture Management (KSPM)**, **Infrastructure-as-Code (IaC) Security Auditing**, **AI Red Teaming (OWASP LLM Top 10)**, an automated **API Security Scanner (OWASP API Top 10)**, **MITRE D3FEND Countermeasure Defense Matrices**, **Detection-as-Code Rule Generation (Sigma & Splunk SPL)**, and **Automated Ansible & Bash Hardening Playbooks**.
 
 ---
 
 ## 🌟 What's New in Version 2026.10.23
 
-### 1. ☁️ Cloud & Kubernetes Security Posture Management (CSPM / KSPM / IaC Audit)
+### 1. 🐋 OrcaRouter Cyber Inference Integration (PR #26 by [@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd))
+> [!NOTE]
+> Special credit and heartfelt thanks to community developer **[@beilsteinernest215-cmd](https://github.com/beilsteinernest215-cmd)** for creating and contributing **Pull Request #26: `feat(ai): add OrcaRouter Cyber Inference as a named model provider`**!
+
+* **Named Model Provider Integration (`ai_engine/orcarouter.py`, `ai_engine/providers.py`)**:
+  * Added **OrcaRouter Cyber Inference** (`ModelProvider.ORCAROUTER`) with official base endpoint `https://api.orcarouter.ai/v1`.
+  * Specialized security reasoning routing to flagship OrcaCyber models: `orca/orcacyber-ultra-1.0` and `orca/orcacyber-zero-1.5`, with general fallback to `orcarouter/fusion`.
+  * Generation-safe credential management (`credential_store`) that stores runtime API keys server-side with masked previews (`sk-orca-...0000`) without leaking secrets into client responses or debug logs.
+  * Live model discovery via `GET https://api.orcarouter.ai/v1/models?capability=chat` with capability filtering (chat, multimodal, embeddings) and automatic fallback to verified seed models when unauthenticated or degraded.
+* **Interactive Dashboard Integration (`templates/dashboard.html`, `static/css/style.css`)**:
+  * New **AI Providers** management view in the web dashboard allowing operators to configure, update, and clear OrcaRouter API credentials on the fly.
+  * Capability-filtered dynamic model selection dropdown driven by the `/api/ai/models` endpoint.
+
+### 2. ☁️ Cloud & Kubernetes Security Posture Management (CSPM / KSPM / IaC Audit)
 * **Multi-Cloud Posture Auditing (`security/cspm_scanner.py`)**:
   * **AWS**: S3 public read/write detection, missing bucket encryption (KMS/SSE-S3), IAM administrative wildcard privileges (`*:*`), and unconstrained Security Group rules (ports 22, 3389, 3306, 5432 exposed to 0.0.0.0/0).
   * **Azure**: Unencrypted Storage Account blob services, missing HTTPS transport enforcement, public blob container access.

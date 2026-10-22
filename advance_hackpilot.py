@@ -3,7 +3,7 @@
 """
 HackPilot - Enterprise AI-Powered Penetration Testing Platform
 Author: HackPilot Team
-Version: 2026.10.22.1 (Production-Ready)
+Version: 2026.10.23 (Production-Ready)
 Description: Enterprise-grade pentesting automation platform with advanced AI, microservices architecture,
             and cloud-native capabilities for professional security assessments.
 
@@ -226,7 +226,7 @@ BANNER = """
     ██║  ██║██║  ██║╚██████╗██║  ██╗██║     ██║███████╗╚██████╔╝   ██║   
     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝    ╚═╝   
 [/bold red]
-[bold cyan]      Enterprise AI-Powered Penetration Testing Platform v2026.10.22.1[/bold cyan]
+[bold cyan]      Enterprise AI-Powered Penetration Testing Platform v2026.10.23[/bold cyan]
 [bold green]        Production-Ready | Cloud-Native | AI-Enhanced[/bold green]
 [dim]                    Advanced Security Assessment Platform[/dim]
 """
@@ -866,7 +866,7 @@ class EnterpriseHackPilot:
         def health_check():
             return jsonify({
                 "status": "healthy",
-                "version": "2026.10.22.1",
+                "version": "2026.10.23",
                 "timestamp": datetime.utcnow().isoformat()
             })
 

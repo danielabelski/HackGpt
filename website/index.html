@@ -4,18 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackPilot - Enterprise AI-Powered Penetration Testing & Threat Intelligence Platform</title>
-    <meta name="description" content="HackPilot is an enterprise-grade AI-powered penetration testing automation platform. Automate reconnaissance, scanning, threat modeling, zero-day anomaly detection, and compliance reporting with multi-provider LLMs.">
+    <title>HackPilot Enterprise - Autonomous Cyber AI Pentesting & Multi-Cloud Defense</title>
+    <meta name="description" content="HackPilot is an enterprise-grade AI-powered penetration testing automation platform. Multi-provider AI (8 providers, 26+ models including OrcaRouter Cyber Inference), Cloud Security Posture Management (CSPM/KSPM), AI Red Teaming (OWASP LLM Top 10), and API Security auditing.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Top Announcement Banner -->
+    <div class="top-announcement">
+        <div class="container announcement-content">
+            <span class="announcement-pill"><i class="fa-solid fa-coins"></i> OFFICIAL TOKEN</span>
+            <span class="announcement-text">Official Solana Contract Address (CA): <strong>Soon Available</strong> &bull; Verified Ecosystem Integration</span>
+            <a href="#connect" class="announcement-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
     <!-- Background Grid & Glow Effects -->
     <div class="cyber-bg">
         <div class="cyber-grid"></div>
@@ -26,27 +35,29 @@
 
     <!-- Navigation Bar -->
     <header class="header" id="navbar">
-        <div class="nav-container">
+        <div class="container nav-container">
             <a href="#" class="logo-link">
                 <img src="hackpilot-logo.png" alt="HackPilot Logo" class="nav-logo">
-                <span class="version-tag"><span class="pulse-dot"></span> v2026.10.22.1</span>
+                <span class="version-tag"><span class="pulse-dot"></span> v2026.10.23</span>
             </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <nav class="nav-menu" id="navMenu">
                 <a href="#features" class="nav-link"><i class="fa-solid fa-layer-group"></i> Features</a>
-                <a href="#pipeline" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Pentest Pipeline</a>
+                <a href="#pipeline" class="nav-link"><i class="fa-solid fa-diagram-project"></i> Pipeline</a>
+                <a href="#cspm" class="nav-link"><i class="fa-solid fa-cloud-shield"></i> Cloud & K8s</a>
+                <a href="#ai-defense" class="nav-link"><i class="fa-solid fa-shield-halved"></i> AI Red Team</a>
                 <a href="#ai-analyzer" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Simulator</a>
-                <a href="#quickstart" class="nav-link"><i class="fa-solid fa-terminal"></i> Quick Start</a>
-                <a href="#demo" class="nav-link"><i class="fa-solid fa-code-compare"></i> Live Terminal</a>
+                <a href="#demo" class="nav-link"><i class="fa-solid fa-terminal"></i> Terminal</a>
+                <a href="#quickstart" class="nav-link"><i class="fa-solid fa-bolt"></i> Quick Start</a>
                 <a href="#connect" class="nav-link"><i class="fa-solid fa-user-shield"></i> Developer</a>
                 <div class="nav-actions">
-                    <a href="https://discord.gg/eXPjM3Hxwb" target="_blank" class="nav-btn discord-btn">
+                    <a href="https://discord.gg/eXPjM3Hxwb" target="_blank" class="nav-btn discord-btn" title="Join Discord">
                         <i class="fa-brands fa-discord"></i> Discord
                     </a>
-                    <a href="https://github.com/yashab-cyber/hackpilot" target="_blank" class="nav-btn github-btn">
-                        <i class="fa-brands fa-github"></i> Star on GitHub
+                    <a href="https://github.com/yashab-cyber/hackpilot" target="_blank" class="nav-btn github-btn" title="Star on GitHub">
+                        <i class="fa-brands fa-github"></i> Star
                     </a>
                 </div>
             </nav>
@@ -60,28 +71,31 @@
                 <div class="hero-badges">
                     <span class="hero-badge badge-green">
                         <span class="pulse-ring"></span>
-                        <i class="fa-solid fa-bolt"></i> Autonomous Security Operations
+                        <i class="fa-solid fa-robot"></i> Autonomous Agentic Operations
                     </span>
                     <span class="hero-badge badge-blue">
-                        <i class="fa-solid fa-brain"></i> Multi-LLM Engine
+                        <i class="fa-solid fa-brain"></i> 8 AI Providers &bull; 26+ Frontier Models
+                    </span>
+                    <span class="hero-badge badge-purple">
+                        <i class="fa-solid fa-cloud"></i> CSPM &bull; KSPM &bull; IaC Auditor
                     </span>
                 </div>
                 <h1 class="hero-title">
-                    Autonomous Pentesting Powered by 
+                    Autonomous Pentesting & Multi-Cloud Defense Powered by 
                     <span class="gradient-text">Agentic Cyber AI</span>
                 </h1>
                 <p class="hero-description">
-                    HackPilot is an enterprise penetration testing automation suite. It orchestrates multi-phase reconnaissance, automated vulnerability scanning, safe exploit verification, ML zero-day anomaly detection, and executive compliance reporting.
+                    HackPilot is an enterprise penetration testing and multi-cloud security posture automation platform. Orchestrate reconnaissance, vulnerability scanning, AI Red Teaming (OWASP LLM Top 10), safe exploitation, Kubernetes & Cloud Auditing (CIS Benchmarks), and automated remediation playbooks.
                 </p>
                 <div class="hero-actions">
                     <a href="#ai-analyzer" class="btn btn-primary">
-                        <i class="fa-solid fa-sparkles"></i> Try AI Threat Simulator
+                        <i class="fa-solid fa-sparkles"></i> Try AI Simulator
                     </a>
-                    <a href="#quickstart" class="btn btn-secondary">
-                        <i class="fa-solid fa-download"></i> Installation & Usage
+                    <a href="#cspm" class="btn btn-secondary">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Cloud Posture (CSPM)
                     </a>
                     <a href="https://github.com/yashab-cyber/hackpilot" target="_blank" class="btn btn-outline">
-                        <i class="fa-brands fa-github"></i> View Source
+                        <i class="fa-brands fa-github"></i> View Repository
                     </a>
                 </div>
 
@@ -90,22 +104,29 @@
                     <div class="spec-item">
                         <i class="fa-solid fa-shield-halved text-green"></i>
                         <div>
-                            <strong>6-Phase Workflow</strong>
-                            <span>Recon to Executive PDF</span>
+                            <strong>6-Phase Pentest Engine</strong>
+                            <span>Recon to Executive Audit</span>
                         </div>
                     </div>
                     <div class="spec-item">
                         <i class="fa-solid fa-microchip text-cyan"></i>
                         <div>
-                            <strong>Multi-Provider AI</strong>
-                            <span>OpenAI, Llama, Ollama, LiteLLM</span>
+                            <strong>OrcaRouter & 8 Providers</strong>
+                            <span>Frontier Cyber Reasoning</span>
                         </div>
                     </div>
                     <div class="spec-item">
-                        <i class="fa-solid fa-lock text-purple"></i>
+                        <i class="fa-solid fa-cubes text-purple"></i>
+                        <div>
+                            <strong>Multi-Cloud & K8s Security</strong>
+                            <span>CIS AWS / Azure / GCP / K8s</span>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <i class="fa-solid fa-lock text-green"></i>
                         <div>
                             <strong>100% Safe Execution</strong>
-                            <span>No Shell Injection Risk</span>
+                            <span>Zero Unsanitized Shell Calls</span>
                         </div>
                     </div>
                 </div>
@@ -125,7 +146,7 @@
                                 <i class="fa-solid fa-terminal"></i> Live Pentest Stream
                             </button>
                             <button class="tab-btn" data-tab="tab-dashboard">
-                                <i class="fa-solid fa-chart-line"></i> Risk Radar Dashboard
+                                <i class="fa-solid fa-chart-line"></i> Security Posture Radar
                             </button>
                         </div>
                     </div>
@@ -134,62 +155,64 @@
                         <!-- Tab 1: Terminal Log Stream -->
                         <div class="tab-content active" id="tab-terminal">
                             <div class="terminal-body" id="heroTerminal">
-                                <div class="line"><span class="t-cyan">guest@hackpilot:~$</span> python3 advance_hackpilot.py --target production-api.net --api --web</div>
-                                <div class="line t-green">[+] HackPilot Enterprise Framework v2026.10.22.1 initialized</div>
-                                <div class="line t-green">[+] Database connection active (PostgreSQL cluster)</div>
-                                <div class="line t-purple">[i] Multi-LLM Router: Provider initialized [OpenAI GPT-4o / Ollama Fallback]</div>
-                                <div class="line t-blue">[+] Phase 1: Reconnaissance & Subdomain Enumeration starting...</div>
-                                <div class="line">    - Discovering subdomains: api.production-api.net, admin.production-api.net</div>
-                                <div class="line t-green">    - Port scan complete: 80/tcp (HTTP), 443/tcp (HTTPS), 8443/tcp (K8s API) open</div>
-                                <div class="line t-blue">[+] Phase 2: Vulnerability Enumeration...</div>
-                                <div class="line t-yellow">    - Found unauthenticated endpoint: /api/v1/auth/tokens</div>
-                                <div class="line t-red">    - [CRITICAL] SQL Injection flaw detected on endpoint parameter 'user_id'</div>
-                                <div class="line t-purple">[+] Phase 3: AI Threat Analysis & Payload Generation running...</div>
-                                <div class="line">    - AI Agent generated non-destructive PoC verification query</div>
-                                <div class="line t-green">[+] Phase 4: Exploitation Verification successful. Administrator hash exposed!</div>
-                                <div class="line t-blue">[+] Phase 5: DBSCAN Log Clustering & Anomaly Detection active...</div>
-                                <div class="line t-green">    - Flagged 3 abnormal admin API requests (Confidence: 98.4%)</div>
-                                <div class="line t-green">[+] Phase 6: Executive PDF and HTML Audit Reports generated!</div>
-                                <div class="line t-cyan">[✓] Scan finished in 14.8s. Session UUID: e41b8a92-7f21-49b0-9f12-00ab198fa391</div>
+                                <div class="line"><span class="t-cyan">operator@hackpilot:~$</span> python3 advance_hackpilot.py --cspm-scan --llm-redteam</div>
+                                <div class="line t-green">[+] HackPilot Enterprise Framework v2026.10.23 initialized</div>
+                                <div class="line t-green">[+] Database connection active (PostgreSQL enterprise cluster)</div>
+                                <div class="line t-purple">[i] AI Router: Active Provider [OrcaRouter Cyber Inference / GPT-4o fallback]</div>
+                                <div class="line t-blue">[+] Phase 1: Attack Surface Reconnaissance & Port Enumeration starting...</div>
+                                <div class="line">    - Discovered subdomains: api.cloud-enterprise.net, k8s.cloud-enterprise.net</div>
+                                <div class="line t-green">    - Port scan: 80/tcp (HTTP), 443/tcp (HTTPS), 6443/tcp (Kubernetes API) open</div>
+                                <div class="line t-blue">[+] Phase 2: Vulnerability Enumeration & OpenAPI Audit (OWASP API Top 10)...</div>
+                                <div class="line t-yellow">    - Flagged unauthenticated route: /api/v2/tenant/data (API1: BOLA)</div>
+                                <div class="line t-red">    - [CRITICAL] SQL Injection flaw detected on endpoint parameter 'id'</div>
+                                <div class="line t-purple">[+] Phase 3: AI Red Teaming & Exploit Modeling (OWASP LLM Top 10)...</div>
+                                <div class="line">    - Executed automated indirect prompt injection and guardrail evasion probes</div>
+                                <div class="line t-green">[+] Phase 4: Cloud Security Posture (CSPM/KSPM) CIS Benchmark Audit...</div>
+                                <div class="line t-red">    - [CRITICAL] S3 bucket 'customer_exports' allows public read/write ACL (CIS AWS 1.2)</div>
+                                <div class="line t-red">    - [CRITICAL] K8s pod 'admin-workload' configured with privileged: true (CIS K8s 5.2.1)</div>
+                                <div class="line t-cyan">[+] AI Threat Blast Radius: TENANT_TAKEOVER_RISK synthesized</div>
+                                <div class="line t-green">[+] Phase 5: DBSCAN & Isolation Forest Zero-Day Log Clustering completed</div>
+                                <div class="line t-green">[+] Phase 6: Executive PDF, Sigma Rules & Terraform Hardening scripts generated!</div>
+                                <div class="line t-cyan">[✓] Scan finished in 11.8s. Session UUID: b97c41a2-9e81-432d-bf01-09de7a213451</div>
                                 <div class="line"><span class="cursor">_</span></div>
                             </div>
                         </div>
 
-                        <!-- Tab 2: Risk Radar Dashboard Card -->
+                        <!-- Tab 2: Security Posture Radar Card -->
                         <div class="tab-content" id="tab-dashboard">
                             <div class="dashboard-preview">
                                 <div class="preview-metrics">
                                     <div class="p-card bg-red">
-                                        <span class="p-val">1</span>
-                                        <span class="p-lbl">Critical CVE</span>
+                                        <span class="p-val">2</span>
+                                        <span class="p-lbl">Critical CVEs</span>
                                     </div>
                                     <div class="p-card bg-orange">
-                                        <span class="p-val">3</span>
-                                        <span class="p-lbl">High Risk</span>
+                                        <span class="p-val">5</span>
+                                        <span class="p-lbl">High Risks</span>
                                     </div>
                                     <div class="p-card bg-green">
-                                        <span class="p-val">98%</span>
-                                        <span class="p-lbl">Compliance Score</span>
+                                        <span class="p-val">96.4%</span>
+                                        <span class="p-lbl">CIS AWS Pass</span>
                                     </div>
                                     <div class="p-card bg-blue">
-                                        <span class="p-val">14.8s</span>
-                                        <span class="p-lbl">Scan Time</span>
+                                        <span class="p-val">11.8s</span>
+                                        <span class="p-lbl">Execution Time</span>
                                     </div>
                                 </div>
                                 <div class="preview-status-box">
                                     <div class="status-header">
-                                        <i class="fa-solid fa-shield-triangle-exclamation text-red"></i>
+                                        <i class="fa-solid fa-triangle-exclamation text-red"></i>
                                         <div>
-                                            <strong>Target Risk Assessment: HIGH SEVERITY</strong>
-                                            <div class="sub-text">OWASP A03:2021 SQL Injection Verified</div>
+                                            <strong>Blast Radius Assessment: TENANT_TAKEOVER_RISK</strong>
+                                            <div class="sub-text">S3 Public Storage + K8s Privileged Pod Escapes</div>
                                         </div>
                                     </div>
                                     <div class="progress-bar-wrap">
-                                        <div class="progress-bar-fill" style="width: 82%;"></div>
+                                        <div class="progress-bar-fill" style="width: 88%;"></div>
                                     </div>
                                     <div class="status-footer">
-                                        <span>AI Threat Confidence: 99.2%</span>
-                                        <span>PDF Report Ready</span>
+                                        <span>AI Threat Confidence: 99.4%</span>
+                                        <span class="text-green"><i class="fa-solid fa-file-shield"></i> Hardening Scripts Ready</span>
                                     </div>
                                 </div>
                             </div>
@@ -204,20 +227,24 @@
     <section class="stats-bar">
         <div class="container stats-container">
             <div class="stat-card">
-                <div class="stat-number gradient-text" data-count="6">6</div>
-                <div class="stat-label">Structured Pentest Phases</div>
+                <div class="stat-number gradient-text" data-target="8">8</div>
+                <div class="stat-label">AI Model Providers</div>
+                <div class="stat-sub">OpenAI, Claude, Gemini, DeepSeek, OrcaRouter, Ollama</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number text-green" data-count="100">100+</div>
-                <div class="stat-label">Security Tools Orchestrated</div>
+                <div class="stat-number text-green" data-target="26">26+</div>
+                <div class="stat-label">Frontier AI Models</div>
+                <div class="stat-sub">GPT-5, Sonnet 5, OrcaCyber Ultra, DeepSeek R1</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number text-cyan" data-count="4">4+</div>
-                <div class="stat-label">AI Providers Supported</div>
+                <div class="stat-number text-cyan" data-target="100">100+</div>
+                <div class="stat-label">Security Tools & Rules</div>
+                <div class="stat-sub">Nmap, Nikto, Nuclei, Sigma, Splunk SPL, CIS</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number text-purple" data-count="100">100%</div>
+                <div class="stat-number text-purple" data-target="100">100%</div>
                 <div class="stat-label">Safe Execution Guarantee</div>
+                <div class="stat-sub">Strict POSIX subprocess arrays, zero shell injection</div>
             </div>
         </div>
     </section>
@@ -226,9 +253,9 @@
     <section id="pipeline" class="pipeline-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge"><i class="fa-solid fa-diagram-project"></i> Core Architecture</span>
+                <span class="section-badge"><i class="fa-solid fa-diagram-project"></i> Core Pentesting Architecture</span>
                 <h2 class="section-title">The 6-Phase Automated Pentesting Pipeline</h2>
-                <p class="section-subtitle">HackPilot systematically executes security testing workflows like an experienced ethical hacker, powered by AI threat modeling.</p>
+                <p class="section-subtitle">HackPilot systematically automates end-to-end security assessment workflows with frontier AI reasoning and safe exploitation verification.</p>
             </div>
 
             <div class="pipeline-nav" id="pipelineNav">
@@ -238,23 +265,23 @@
                 </button>
                 <button class="pipe-step" data-step="2">
                     <span class="step-num">02</span>
-                    <span class="step-title">Scanning</span>
+                    <span class="step-title">Vulnerability Scan</span>
                 </button>
                 <button class="pipe-step" data-step="3">
                     <span class="step-num">03</span>
-                    <span class="step-title">AI Assessment</span>
+                    <span class="step-title">AI Exploit Modeling</span>
                 </button>
                 <button class="pipe-step" data-step="4">
                     <span class="step-num">04</span>
-                    <span class="step-title">Safe Exploit</span>
+                    <span class="step-title">Safe Verification</span>
                 </button>
                 <button class="pipe-step" data-step="5">
                     <span class="step-num">05</span>
-                    <span class="step-title">Zero-Day ML</span>
+                    <span class="step-title">Zero-Day ML Anomaly</span>
                 </button>
                 <button class="pipe-step" data-step="6">
                     <span class="step-num">06</span>
-                    <span class="step-title">Executive Report</span>
+                    <span class="step-title">Compliance & Fixes</span>
                 </button>
             </div>
 
@@ -277,9 +304,146 @@
                 <div class="pipe-code-card">
                     <div class="code-header">
                         <span class="code-title"><i class="fa-solid fa-code"></i> CLI Command Simulation</span>
-                        <button class="copy-btn" onclick="copyPipeCode()"><i class="fa-regular fa-copy"></i> Copy</button>
+                        <button class="copy-btn" id="copyPipeBtn" onclick="copyPipeCommand()"><i class="fa-regular fa-copy"></i> Copy</button>
                     </div>
                     <pre class="code-body"><code id="pipeCode">python3 advance_hackpilot.py --target company.com --recon --verbose</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cloud & Kubernetes Security Posture Section (CSPM / KSPM) -->
+    <section id="cspm" class="cspm-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge badge-blue"><i class="fa-solid fa-cloud"></i> Multi-Cloud & K8s Defense</span>
+                <h2 class="section-title">Cloud & Kubernetes Security Posture Management</h2>
+                <p class="section-subtitle">Audit AWS, Azure, GCP, and Kubernetes clusters against official CIS Benchmarks and Infrastructure-as-Code (Terraform / K8s manifests).</p>
+            </div>
+
+            <div class="cspm-grid">
+                <div class="cspm-card">
+                    <div class="cspm-icon text-orange"><i class="fa-brands fa-aws"></i></div>
+                    <h3>Amazon Web Services (AWS)</h3>
+                    <p>Audits S3 bucket public access (read/write ACLs and policies), missing KMS/SSE encryption, IAM <code>*:*</code> wildcard administrator roles, and open Security Group ports (22, 3389, 3306, 5432).</p>
+                    <div class="cspm-tags">
+                        <span>CIS AWS Foundations v3.0</span>
+                        <span>S3 Hardening</span>
+                        <span>IAM Least-Privilege</span>
+                    </div>
+                </div>
+
+                <div class="cspm-card">
+                    <div class="cspm-icon text-cyan"><i class="fa-solid fa-dharmachakra"></i></div>
+                    <h3>Kubernetes (KSPM / PSS)</h3>
+                    <p>Enforces Pod Security Standards (PSS): detects container privilege escalation (<code>privileged: true</code>), root user execution, sensitive hostPath mounts (<code>/var/run/docker.sock</code>), and hostile <code>system:anonymous</code> RBAC bindings.</p>
+                    <div class="cspm-tags">
+                        <span>CIS Kubernetes v1.8</span>
+                        <span>Pod Security Standards</span>
+                        <span>RBAC Audit</span>
+                    </div>
+                </div>
+
+                <div class="cspm-card">
+                    <div class="cspm-icon text-blue"><i class="fa-brands fa-microsoft"></i></div>
+                    <h3>Microsoft Azure</h3>
+                    <p>Inspects unencrypted Storage Account blob services, missing HTTPS transport enforcement, public blob container access, and Network Security Group exposures across Azure infrastructure.</p>
+                    <div class="cspm-tags">
+                        <span>CIS Azure Benchmark</span>
+                        <span>Blob Encryption</span>
+                        <span>NSG Control</span>
+                    </div>
+                </div>
+
+                <div class="cspm-card">
+                    <div class="cspm-icon text-red"><i class="fa-brands fa-google"></i></div>
+                    <h3>Google Cloud Platform (GCP)</h3>
+                    <p>Scans Google Cloud Storage buckets granting public read/write permissions to <code>allUsers</code> or <code>allAuthenticatedUsers</code>, uniform bucket-level access misconfigurations, and compute policies.</p>
+                    <div class="cspm-tags">
+                        <span>CIS GCP Benchmark</span>
+                        <span>GCS Access Controls</span>
+                        <span>IAM Defense</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cspm-remediation-banner">
+                <div class="remediation-info">
+                    <i class="fa-solid fa-wand-magic text-green"></i>
+                    <div>
+                        <strong>Automated One-Click Hardening Scripts</strong>
+                        <p>Generate production-ready Bash CLI fixes (<code>aws s3api</code>, <code>az storage</code>, <code>kubectl</code>) and Terraform HCL remediation patches on demand.</p>
+                    </div>
+                </div>
+                <div class="remediation-cli">
+                    <code>python3 advance_hackpilot.py --cspm-scan --export-cloud-fix remediation.sh</code>
+                    <button class="copy-btn" onclick="copySnippet('python3 advance_hackpilot.py --cspm-scan --export-cloud-fix remediation.sh', this)"><i class="fa-regular fa-copy"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frontier AI Security & OrcaRouter Gateway Section -->
+    <section id="ai-defense" class="ai-defense-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge badge-purple"><i class="fa-solid fa-brain"></i> Frontier AI Security & Model Gateways</span>
+                <h2 class="section-title">AI Red Teaming & OrcaRouter Cyber Inference</h2>
+                <p class="section-subtitle">Comprehensive safety probing for LLMs, specialized security reasoning gateways, and OWASP API Top 10 automated auditing.</p>
+            </div>
+
+            <div class="ai-defense-grid">
+                <!-- OrcaRouter Card -->
+                <div class="ai-defense-card highlight-card">
+                    <div class="card-badge"><i class="fa-solid fa-code-pull-request"></i> Contributed via PR #26</div>
+                    <div class="card-icon text-cyan"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>OrcaRouter Cyber Inference</h3>
+                    <p>Integrated official OpenAI-compatible security gateway for authorized teams. Routes scoped security reasoning directly to <code>orca/orcacyber-ultra-1.0</code> and <code>orca/orcacyber-zero-1.5</code> models with server-side credential vault protection.</p>
+                    <ul class="card-list">
+                        <li><i class="fa-solid fa-check text-green"></i> Live chat catalog discovery via <code>api.orcarouter.ai</code></li>
+                        <li><i class="fa-solid fa-check text-green"></i> Degraded fallback to verified seed models</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Web Dashboard provider management UI</li>
+                    </ul>
+                    <div class="card-credit">Contributed by community developer <strong>@beilsteinernest215-cmd</strong></div>
+                </div>
+
+                <!-- AI Red Teaming Card -->
+                <div class="ai-defense-card">
+                    <div class="card-badge"><i class="fa-solid fa-skull"></i> OWASP LLM Top 10</div>
+                    <div class="card-icon text-red"><i class="fa-solid fa-shield-virus"></i></div>
+                    <h3>AI Red Teaming Engine</h3>
+                    <p>Automated adversarial probes across all ten OWASP LLM vectors: Prompt Injection, Insecure Output Handling, Training Data Poisoning, Model DoS, Excessive Agency, and Model Theft.</p>
+                    <ul class="card-list">
+                        <li><i class="fa-solid fa-check text-green"></i> Multi-turn indirect injection detection</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Automated defense-in-depth guardrail synthesis</li>
+                        <li><i class="fa-solid fa-check text-green"></i> CLI execution: <code>--llm-redteam [MODEL]</code></li>
+                    </ul>
+                </div>
+
+                <!-- API Security Scanner Card -->
+                <div class="ai-defense-card">
+                    <div class="card-badge"><i class="fa-solid fa-code"></i> OWASP API Top 10</div>
+                    <div class="card-icon text-green"><i class="fa-solid fa-file-code"></i></div>
+                    <h3>API Security & OpenAPI Scanner</h3>
+                    <p>Ingests OpenAPI 3.0 and Swagger 2.0 definitions (JSON/YAML) to execute automated differential testing for BOLA/IDOR, broken authentication, mass assignment, and excessive pagination exposure.</p>
+                    <ul class="card-list">
+                        <li><i class="fa-solid fa-check text-green"></i> Cross-tenant BOLA authorization probes</li>
+                        <li><i class="fa-solid fa-check text-green"></i> JWT algorithm confusion (none/weak keys)</li>
+                        <li><i class="fa-solid fa-check text-green"></i> CLI execution: <code>--api-scan [SPEC_PATH]</code></li>
+                    </ul>
+                </div>
+
+                <!-- Detection as Code Card -->
+                <div class="ai-defense-card">
+                    <div class="card-badge"><i class="fa-solid fa-shield"></i> MITRE D3FEND</div>
+                    <div class="card-icon text-orange"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3>Detection-as-Code & Sigma</h3>
+                    <p>Translates offensive attack paths directly to MITRE D3FEND defensive countermeasures. Exports production-ready Sigma rules (YAML), Splunk SPL search queries, and Ansible hardening playbooks.</p>
+                    <ul class="card-list">
+                        <li><i class="fa-solid fa-check text-green"></i> Automated Sigma rules for SOC/SIEM</li>
+                        <li><i class="fa-solid fa-check text-green"></i> Real-time Splunk query synthesis</li>
+                        <li><i class="fa-solid fa-check text-green"></i> CLI execution: <code>--export-sigma --export-ansible</code></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -289,29 +453,30 @@
     <section id="ai-analyzer" class="ai-analyzer-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge badge-purple"><i class="fa-solid fa-sparkles"></i> Live Demonstration</span>
-                <h2 class="section-title">HackPilot AI Threat Threat Analyzer</h2>
-                <p class="section-subtitle">Experience how HackPilot analyzes vulnerability patterns and generates structured remediation guidelines in real time.</p>
+                <span class="section-badge badge-green"><i class="fa-solid fa-sparkles"></i> Live Demonstration</span>
+                <h2 class="section-title">HackPilot AI Threat Analyzer</h2>
+                <p class="section-subtitle">Experience how HackPilot parses security configurations and synthesizes structured remediation playbooks in real time.</p>
             </div>
 
             <div class="analyzer-card">
                 <div class="analyzer-toolbar">
-                    <label for="vulnPreset"><strong>Select Vulnerability Preset:</strong></label>
+                    <label><strong>Select Vulnerability Preset:</strong></label>
                     <div class="preset-buttons">
-                        <button class="preset-btn active" data-preset="sqli">SQL Injection in API</button>
-                        <button class="preset-btn" data-preset="k8s">Kubernetes Unauth API</button>
+                        <button class="preset-btn active" data-preset="sqli">SQLi in REST API</button>
+                        <button class="preset-btn" data-preset="s3">AWS S3 Public ACL</button>
+                        <button class="preset-btn" data-preset="k8s">K8s Privileged Pod</button>
+                        <button class="preset-btn" data-preset="jwt">JWT Algorithm Confusion</button>
+                        <button class="preset-btn" data-preset="llm">LLM Prompt Injection</button>
                         <button class="preset-btn" data-preset="docker">Docker Socket Exposure</button>
-                        <button class="preset-btn" data-preset="jwt">JWT Hardcoded Secret</button>
-                        <button class="preset-btn" data-preset="rce">Python Command Injection</button>
                     </div>
                 </div>
 
                 <div class="analyzer-grid">
                     <div class="analyzer-input-col">
                         <div class="input-header">
-                            <span><i class="fa-solid fa-file-code text-cyan"></i> Input Code Snippet / Finding Description:</span>
+                            <span><i class="fa-solid fa-file-code text-cyan"></i> Input Code Snippet / Manifest:</span>
                         </div>
-                        <textarea id="analyzerInput" rows="9" spellcheck="false">// ExpressJS Route Vulnerability
+                        <textarea id="analyzerInput" rows="10" spellcheck="false">// ExpressJS Route Vulnerability
 app.get('/api/users/search', async (req, res) => {
     const { query } = req.query;
     const result = await db.query("SELECT * FROM users WHERE name = '" + query + "'");
@@ -330,7 +495,7 @@ app.get('/api/users/search', async (req, res) => {
                         <div class="analyzer-output-body" id="analyzerOutput">
                             <div class="empty-state">
                                 <i class="fa-solid fa-microchip"></i>
-                                <p>Click <strong>"Analyze Vulnerability with HackPilot AI"</strong> or select a preset to generate real-time AI security breakdown.</p>
+                                <p>Click <strong>"Analyze Vulnerability with HackPilot AI"</strong> or select a preset to generate a real-time security breakdown.</p>
                             </div>
                         </div>
                     </div>
@@ -343,9 +508,9 @@ app.get('/api/users/search', async (req, res) => {
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge"><i class="fa-solid fa-cubes"></i> Feature Suite</span>
-                <h2 class="section-title">Built For Modern Security Engineers</h2>
-                <p class="section-subtitle">Engineered with modular Python design patterns, enterprise database support, and strict ethical safety controls.</p>
+                <span class="section-badge"><i class="fa-solid fa-cubes"></i> Comprehensive Capability</span>
+                <h2 class="section-title">Built For Modern Enterprise Security</h2>
+                <p class="section-subtitle">Engineered with modular Python 3.8+ architecture, database session persistence, and strict ethical safety controls.</p>
             </div>
             
             <div class="features-grid">
@@ -353,92 +518,94 @@ app.get('/api/users/search', async (req, res) => {
                 <div class="feature-card">
                     <div class="feature-icon text-cyan"><i class="fa-solid fa-brain"></i></div>
                     <h3 class="feature-title">Multi-Provider AI Orchestration</h3>
-                    <p class="feature-description">Supports OpenAI GPT-4o, Anthropic Claude, offline Llama-3 (Ollama/LM Studio), and LiteLLM unified model router with automatic fallback logic.</p>
+                    <p class="feature-description">Supports OpenAI GPT-5, Anthropic Claude Sonnet 5, Google Gemini, DeepSeek R1, GLM, local Ollama, OpenRouter, and OrcaRouter Cyber Inference.</p>
                     <div class="feature-tag">ai_engine/providers.py</div>
                 </div>
                 <!-- Feature 2 -->
                 <div class="feature-card">
-                    <div class="feature-icon text-purple"><i class="fa-solid fa-diagram-next"></i></div>
-                    <h3 class="feature-title">Machine Learning 0-Day Detector</h3>
-                    <p class="feature-description">Leverages DBSCAN density clustering and Isolation Forest anomaly algorithms to identify unknown zero-day behavior patterns from logs.</p>
-                    <div class="feature-tag">exploitation/zero_day_detector.py</div>
+                    <div class="feature-icon text-purple"><i class="fa-solid fa-cloud-lock"></i></div>
+                    <h3 class="feature-title">Cloud Posture & K8s Auditor (CSPM)</h3>
+                    <p class="feature-description">Automates static & live configuration auditing for AWS, Azure, GCP, and Kubernetes against CIS Benchmarks, NIST SP 800-53, and Terraform IaC.</p>
+                    <div class="feature-tag">security/cspm_scanner.py</div>
                 </div>
                 <!-- Feature 3 -->
                 <div class="feature-card">
-                    <div class="feature-icon text-green"><i class="fa-solid fa-shield-virus"></i></div>
-                    <h3 class="feature-title">Safe Exploitation Engine</h3>
-                    <p class="feature-description">Validates findings safely without using risky <code class="inline-code">shell=True</code> subprocess calls, avoiding unintended side-effects on target hosts.</p>
-                    <div class="feature-tag">exploitation/advanced_engine.py</div>
+                    <div class="feature-icon text-red"><i class="fa-solid fa-crosshairs"></i></div>
+                    <h3 class="feature-title">AI Red Teaming Engine</h3>
+                    <p class="feature-description">Automated adversarial testing for all ten OWASP LLM vulnerabilities including jailbreaks, prompt injection, and excessive agency.</p>
+                    <div class="feature-tag">ai_engine/llm_red_team.py</div>
                 </div>
                 <!-- Feature 4 -->
                 <div class="feature-card">
-                    <div class="feature-icon text-orange"><i class="fa-solid fa-cloud"></i></div>
-                    <h3 class="feature-title">Cloud & Infrastructure Security</h3>
-                    <p class="feature-description">Automates security auditing for Docker containers, Kubernetes API RBAC, load balancers, and microservice service registries.</p>
-                    <div class="feature-tag">cloud/docker_manager.py</div>
+                    <div class="feature-icon text-orange"><i class="fa-solid fa-file-shield"></i></div>
+                    <h3 class="feature-title">API Security Scanner</h3>
+                    <p class="feature-description">Parses OpenAPI 3.0 / Swagger definitions to detect BOLA/IDOR, broken authentication, mass assignment, and sensitive data exposure.</p>
+                    <div class="feature-tag">security/api_scanner.py</div>
                 </div>
                 <!-- Feature 5 -->
                 <div class="feature-card">
-                    <div class="feature-icon text-blue"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h3 class="feature-title">Enterprise Dashboard & Web UI</h3>
-                    <p class="feature-description">Monitor real-time pentest progress, live vulnerability findings, interactive web consoles, and SOC logs from a modern Web App.</p>
-                    <div class="feature-tag">reporting/realtime_dashboard.py</div>
+                    <div class="feature-icon text-green"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h3 class="feature-title">Attack Chaining & MITRE D3FEND</h3>
+                    <p class="feature-description">Constructs multi-stage attack graphs, isolates critical defensive chokepoints, and generates Sigma rules and Ansible playbooks.</p>
+                    <div class="feature-tag">ai_engine/attack_chainer.py</div>
                 </div>
                 <!-- Feature 6 -->
                 <div class="feature-card">
-                    <div class="feature-icon text-red"><i class="fa-solid fa-file-pdf"></i></div>
-                    <h3 class="feature-title">Automated Compliance PDF Reports</h3>
-                    <p class="feature-description">Generates executive PDF and HTML audit reports mapped directly to OWASP Top 10, NIST SP 800-53, ISO 27001, and PCI-DSS v4.0.</p>
-                    <div class="feature-tag">reporting/dynamic_reports.py</div>
+                    <div class="feature-icon text-blue"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3 class="feature-title">Enterprise Web Dashboard & API</h3>
+                    <p class="feature-description">Monitor real-time assessments, live vulnerability findings, interactive web consoles, and SOC logs from a modern Flask/WebSocket interface.</p>
+                    <div class="feature-tag">reporting/realtime_dashboard.py</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Quick Start & Commands Section -->
+    <!-- Quick Start Section -->
     <section id="quickstart" class="quickstart-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge badge-green"><i class="fa-solid fa-code"></i> Getting Started</span>
+                <span class="section-badge badge-green"><i class="fa-solid fa-code"></i> Rapid Deployment</span>
                 <h2 class="section-title">Get Started in 3 Simple Steps</h2>
-                <p class="section-subtitle">HackPilot runs on Linux/macOS/Windows with Python 3.8+ or inside Docker containers.</p>
+                <p class="section-subtitle">HackPilot runs smoothly on Linux, macOS, and Termux/PRoot environments with Python 3.8+.</p>
             </div>
 
             <div class="quickstart-grid">
                 <div class="qs-step-card">
                     <div class="qs-header">
                         <span class="qs-badge">1</span>
-                        <h4>Clone & Install Dependencies</h4>
+                        <h4>Automated Installation</h4>
                     </div>
                     <div class="code-box">
-                        <button class="copy-btn" onclick="copyText('qs-cmd-1', this)"><i class="fa-regular fa-copy"></i></button>
-                        <pre><code id="qs-cmd-1">git clone https://github.com/yashab-cyber/hackpilot.git
-cd HackPilot
-pip install -r requirements-dev.txt</code></pre>
+                        <button class="copy-btn" onclick="copySnippet('git clone https://github.com/yashab-cyber/hackpilot.git\ncd hackpilot\nbash install.sh', this)"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code>git clone https://github.com/yashab-cyber/hackpilot.git
+cd hackpilot
+bash install.sh</code></pre>
                     </div>
                 </div>
 
                 <div class="qs-step-card">
                     <div class="qs-header">
                         <span class="qs-badge">2</span>
-                        <h4>Configure Environment (Optional)</h4>
+                        <h4>Configure AI Keys (Optional)</h4>
                     </div>
                     <div class="code-box">
-                        <button class="copy-btn" onclick="copyText('qs-cmd-2', this)"><i class="fa-regular fa-copy"></i></button>
-                        <pre><code id="qs-cmd-2">cp .env.example .env
-# Add OPENAI_API_KEY or configure local Ollama endpoint</code></pre>
+                        <button class="copy-btn" onclick="copySnippet('cp .env.example .env\n# Configure ORCAROUTER_API_KEY, OPENAI_API_KEY or Ollama', this)"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code>cp .env.example .env
+# Configure ORCAROUTER_API_KEY, OPENAI_API_KEY or Ollama</code></pre>
                     </div>
                 </div>
 
                 <div class="qs-step-card">
                     <div class="qs-header">
                         <span class="qs-badge">3</span>
-                        <h4>Launch HackPilot Assessment</h4>
+                        <h4>Execute Assessment or Web UI</h4>
                     </div>
                     <div class="code-box">
-                        <button class="copy-btn" onclick="copyText('qs-cmd-3', this)"><i class="fa-regular fa-copy"></i></button>
-                        <pre><code id="qs-cmd-3"># Run full pentest with Web Dashboard
-python advance_hackpilot.py --target target-domain.com --api --web</code></pre>
+                        <button class="copy-btn" onclick="copySnippet('python3 advance_hackpilot.py --cspm-scan\npython3 advance_hackpilot.py --web', this)"><i class="fa-regular fa-copy"></i></button>
+                        <pre><code># Run multi-cloud CSPM & K8s audit
+python3 advance_hackpilot.py --cspm-scan
+# Or start Enterprise Web Dashboard
+python3 advance_hackpilot.py --web</code></pre>
                     </div>
                 </div>
             </div>
@@ -449,9 +616,24 @@ python advance_hackpilot.py --target target-domain.com --api --web</code></pre>
     <section id="demo" class="demo-section">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge"><i class="fa-solid fa-terminal"></i> Interactive Sandbox</span>
-                <h2 class="section-title">HackPilot Interactive Shell Simulator</h2>
-                <p class="section-subtitle">Test HackPilot CLI commands directly in your browser. Type <code class="inline-code">help</code> to list available commands.</p>
+                <span class="section-badge"><i class="fa-solid fa-terminal"></i> Interactive Shell Simulator</span>
+                <h2 class="section-title">HackPilot Interactive Terminal</h2>
+                <p class="section-subtitle">Test HackPilot CLI commands directly in your browser. Click a quick command or type <code class="inline-code">help</code> below.</p>
+            </div>
+
+            <!-- Command Suggestion Chips -->
+            <div class="terminal-chips">
+                <span class="chip" onclick="runChipCommand('help')">help</span>
+                <span class="chip" onclick="runChipCommand('cspm')">cspm</span>
+                <span class="chip" onclick="runChipCommand('k8s-audit')">k8s-audit</span>
+                <span class="chip" onclick="runChipCommand('orcarouter')">orcarouter</span>
+                <span class="chip" onclick="runChipCommand('ai-redteam')">ai-redteam</span>
+                <span class="chip" onclick="runChipCommand('api-scan')">api-scan</span>
+                <span class="chip" onclick="runChipCommand('d3fend')">d3fend</span>
+                <span class="chip" onclick="runChipCommand('sigma')">sigma</span>
+                <span class="chip" onclick="runChipCommand('cve')">cve</span>
+                <span class="chip" onclick="runChipCommand('run')">run</span>
+                <span class="chip" onclick="runChipCommand('clear')">clear</span>
             </div>
             
             <div class="interactive-terminal">
@@ -461,14 +643,14 @@ python advance_hackpilot.py --target target-domain.com --api --web</code></pre>
                         <span class="dot dot-yellow"></span>
                         <span class="dot dot-green"></span>
                     </div>
-                    <div class="terminal-title"><i class="fa-solid fa-terminal"></i> hackpilot-shell-v2026.10 (bash)</div>
+                    <div class="terminal-title"><i class="fa-solid fa-terminal"></i> hackpilot-console-v2026.10.23 (bash)</div>
                 </div>
                 <div class="terminal-body" id="interactiveTerminal">
-                    <div class="line t-green">Welcome to HackPilot Shell Simulator v2026.10.22.1</div>
-                    <div class="line">Type <span class="t-cyan">help</span> to view available security commands. Try: <span class="t-yellow">run</span>, <span class="t-yellow">ai-analyze</span>, <span class="t-yellow">zero-day</span>, or <span class="t-yellow">compliance</span>.</div>
+                    <div class="line t-green">Welcome to HackPilot Interactive Shell Simulator v2026.10.23</div>
+                    <div class="line">Type <span class="t-cyan">help</span> or click the suggestion chips above to execute security commands.</div>
                     <div class="terminal-input-line">
-                        <span class="t-cyan">guest@hackpilot:~$</span>
-                        <input type="text" id="terminalInput" autofocus autocomplete="off" placeholder="Type command here (e.g. help)...">
+                        <span class="t-cyan">operator@hackpilot:~$</span>
+                        <input type="text" id="terminalInput" autocomplete="off" placeholder="Type command here (e.g. help, cspm, orcarouter)...">
                     </div>
                 </div>
             </div>
@@ -480,11 +662,23 @@ python advance_hackpilot.py --target target-domain.com --api --web</code></pre>
         <div class="container">
             <div class="connect-container">
                 <div class="connect-content">
-                    <span class="section-badge badge-blue"><i class="fa-solid fa-user-gear"></i> Lead Developer</span>
-                    <h2>Meet the Developer</h2>
+                    <span class="section-badge badge-blue"><i class="fa-solid fa-user-gear"></i> Lead Developer & Creator</span>
+                    <h2>Meet the Creator</h2>
                     <p>
-                        <strong>Yashab Alam</strong> is the Lead Developer & Creator of the HackPilot open-source platform. With a passion for AI security, ethical hacking, and enterprise vulnerability management, Yashab actively maintains the HackPilot suite.
+                        <strong>Yashab Alam</strong> is the Lead Developer & Creator of the HackPilot Enterprise cybersecurity platform. Passionate about AI threat intelligence, autonomous agentic exploitation, and cloud posture defense, Yashab actively drives the open-source HackPilot ecosystem.
                     </p>
+
+                    <!-- Official CA Notice in Connect Section -->
+                    <div class="token-notice-box">
+                        <div class="token-notice-header">
+                            <i class="fa-solid fa-coins text-yellow"></i>
+                            <strong>Official Solana Token Contract Address (CA)</strong>
+                        </div>
+                        <div class="token-notice-body">
+                            <code>CA: Soon Available</code>
+                            <span class="token-sub">Official verified Solana token for HackPilot community development & ecosystem support.</span>
+                        </div>
+                    </div>
                     
                     <div class="contact-methods">
                         <a href="mailto:yashabalam9@gmail.com" class="contact-item">
@@ -507,17 +701,17 @@ python advance_hackpilot.py --target target-domain.com --api --web</code></pre>
                 <div class="social-links-card">
                     <h3>Connect & Collaborate</h3>
                     <div class="social-grid">
-                        <a href="https://www.linkedin.com/in/yashab-alam" target="_blank" class="social-btn linkedin">
-                            <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
-                        </a>
                         <a href="https://github.com/yashab-cyber" target="_blank" class="social-btn github">
                             <i class="fa-brands fa-github"></i> GitHub (@yashab-cyber)
                         </a>
                         <a href="https://discord.gg/eXPjM3Hxwb" target="_blank" class="social-btn discord">
-                            <i class="fa-brands fa-discord"></i> Join Discord Server
+                            <i class="fa-brands fa-discord"></i> Discord Server
+                        </a>
+                        <a href="https://www.linkedin.com/in/yashab-alam" target="_blank" class="social-btn linkedin">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
                         </a>
                         <a href="https://x.com/_gh0st0fs0l" target="_blank" class="social-btn twitter">
-                            <i class="fa-brands fa-x-twitter"></i> X / Twitter
+                            <i class="fa-brands fa-x-twitter"></i> X (@_gh0st0fs0l)
                         </a>
                         <a href="https://www.instagram.com/yashabcyber" target="_blank" class="social-btn instagram">
                             <i class="fa-brands fa-instagram"></i> Instagram
@@ -537,30 +731,40 @@ python advance_hackpilot.py --target target-domain.com --api --web</code></pre>
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="hackpilot-logo.png" alt="HackPilot Logo" class="footer-logo">
-                    <p>Enterprise AI-Powered Penetration Testing & Threat Intelligence Platform.</p>
+                    <p>Enterprise AI-Powered Penetration Testing & Multi-Cloud Defense Platform.</p>
+                    <div class="ca-footer-note">
+                        <i class="fa-solid fa-shield-halved text-cyan"></i> Solana CA: <strong>Soon Available</strong>
+                    </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Navigation</h4>
+                    <h4>Platform</h4>
                     <a href="#features">Features</a>
-                    <a href="#pipeline">Pentest Pipeline</a>
-                    <a href="#ai-analyzer">AI Simulator</a>
-                    <a href="#demo">Live Terminal</a>
+                    <a href="#pipeline">6-Phase Pipeline</a>
+                    <a href="#cspm">Cloud & K8s (CSPM)</a>
+                    <a href="#ai-defense">AI Red Teaming</a>
+                    <a href="#ai-analyzer">AI Threat Simulator</a>
+                    <a href="#demo">Live Console</a>
                 </div>
                 <div class="footer-col">
-                    <h4>Legal & Security</h4>
+                    <h4>Community & Legal</h4>
+                    <a href="https://github.com/yashab-cyber/hackpilot" target="_blank">GitHub Repository</a>
+                    <a href="https://discord.gg/eXPjM3Hxwb" target="_blank">Discord Community</a>
                     <a href="https://github.com/yashab-cyber/hackpilot/blob/main/LICENSE" target="_blank">MIT License</a>
                     <a href="https://github.com/yashab-cyber/hackpilot/blob/main/AGENTS.md" target="_blank">Security Policy</a>
-                    <a href="https://github.com/yashab-cyber/hackpilot" target="_blank">GitHub Repository</a>
+                    <a href="https://github.com/yashab-cyber/hackpilot/blob/main/DONATE.md" target="_blank">Donations & Sponsorship</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 HackPilot Platform. Created by Yashab Alam. Designated for authorized security testing only.</p>
+                <p>&copy; 2026 HackPilot Enterprise. Created by Yashab Alam. Authorized security testing only.</p>
                 <div class="footer-status">
-                    <span class="pulse-dot"></span> System Operational
+                    <span class="pulse-dot"></span> System Operational &bull; v2026.10.23
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toastNotification" class="toast-notification"></div>
 
     <!-- Custom Javascript -->
     <script src="main.js"></script>
